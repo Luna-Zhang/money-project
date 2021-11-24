@@ -1,0 +1,83 @@
+package ${package.Service};
+
+import com.make.money.data.entity.${entity};
+import com.make.money.data.mapper.${table.mapperName};
+import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import javax.annotation.Resource;
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Resource
+public class ${table.serviceName} {
+
+@Autowired
+private ${entity}Mapper entityMapper;
+
+    /**
+    * 新增
+    *
+    * @param entity 实体
+    * @return int
+    */
+    public void add(${entity} entity){
+        int insert = entityMapper.insert(entity);
+        if (insert <= 0) {
+        // TODO 异常
+        }
+    }
+
+    /**
+       * 删除
+       *  @param id id
+       *  @return int
+       */
+    public void deleteById(Integer id) {
+        int only = entityMapper.deleteByPrimaryKey(Long.valueOf(id));
+        if (only <= 0) {
+        // TODO 异常
+        }
+    }
+
+    /**
+    * 根据id修改
+    *  @param entity
+    *  @return int
+    */
+    public void edit(${entity} entity) {
+        int i = entityMapper.updateByPrimaryKey(entity);
+        if (i<= 0){
+        // TODO 异常
+        }
+    }
+
+    /**
+    * 通过查询参数获取单个BaseDict对象
+    *
+    * @param id id
+    * @return ${entity}
+    */
+    public ${entity} getOneBaseDictByParams(Integer id) {
+        return entityMapper.selectByPrimaryKey(Long.valueOf(id));
+    }
+
+    /**
+    * 分页查询
+    * @param entity
+    * @return IPage<${entity}>
+    * TODO 分页查询的当前页和条数需要修改
+    */
+    public IPage<${entity}> getBaseDictListPage (${entity} entity) {
+        IPage<${entity}> page = new Page<>(1,10);
+        QueryWrapper<${entity}> param = new QueryWrapper<>();
+        return entityMapper.selectPage(page, param);
+    }
+
+}

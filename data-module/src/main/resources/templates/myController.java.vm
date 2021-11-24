@@ -1,0 +1,123 @@
+package ${package.Controller};
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.*;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+import com.make.money.data.entity.${entity};
+import com.make.money.data.service.${entity}Service;
+import com.make.money.data.response.HttpResponse;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+import javax.annotation.Resource;
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@Api(tags = "$!{table.comment}")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+    #if(${superControllerClass})
+    public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+    public class ${table.controllerName} {
+    #end
+
+    #foreach($field in ${table.fields})
+        #if(${field.keyFlag})
+            #set($keyPropertyName=${field.propertyName})
+        #end
+    #end
+
+@Resource
+private ${entity}Service service;
+
+    /**
+     * 添加
+     *
+     * @author luna
+     * @date   2021-11-24
+     * @return HttpResponse
+     */
+    @ApiOperation("添加")
+    @PostMapping(value = "/add")
+    public HttpResponse add(@RequestBody ${entity} entity) {
+        service.add(entity);
+        return HttpResponse.ok();
+    }
+
+    /**
+     * 通过主键删除
+     *
+     * @author luna
+     * @date  2021-11-24
+     * @return HttpResponse
+     */
+    @ApiOperation("通过主键删除")
+    @DeleteMapping(value = "/deleteById/{id}")
+    public HttpResponse batchDelete(@PathVariable("id") Integer id) {
+        service.deleteById(id);
+        return HttpResponse.ok();
+    }
+
+    /**
+     * 编辑
+     *
+     * @author luna
+     * @date   2021-11-24
+     * @return HttpResponse
+     */
+    @ApiOperation("编辑")
+    @PutMapping(value = "/updateById")
+    public HttpResponse edit(@RequestBody ${entity} entity) {
+        service.edit(entity);
+        return HttpResponse.ok();
+    }
+
+    /**
+    * 获取信息
+    *
+    * @author luna
+    * @date 2021-11-24
+    * @return HttpResponse
+    */
+    @ApiOperation("根据id获取信息")
+    @GetMapping(value = "/getOneInfoById/{id}")
+    public HttpResponse getInfoById(@PathVariable("id") Integer id) {
+        return HttpResponse.ok(service.getOneBaseDictByParams(id));
+    }
+
+    /**
+     * 获取信息
+     *
+     * @author luna
+     * @date 2021-11-24
+     * @return HttpResponse
+     */
+    @ApiOperation("分页查询")
+    @GetMapping(value = "/getPageList")
+    public HttpResponse get(@RequestBody ${entity} entity) {
+        return HttpResponse.ok(service.getBaseDictListPage(entity));
+    }
+ }
+
+#end
