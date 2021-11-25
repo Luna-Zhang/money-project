@@ -2,7 +2,9 @@ package com.make.money.data.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.make.money.data.entity.TaskDetailInfo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TaskDetailInfoMapper extends BaseMapper<TaskDetailInfo> {
     int deleteByPrimaryKey(Long id);
 

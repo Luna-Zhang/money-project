@@ -37,12 +37,9 @@ public class BaseDictItem extends BaseModel {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-
     @ApiModelProperty(value = "逻辑删除：0-是 1-否")
     @TableField(value = "disable")
+    @TableLogic
     private Boolean disable;
 
     @ApiModelProperty(value = "字典编码 1-评论 2-点赞 3-收藏")

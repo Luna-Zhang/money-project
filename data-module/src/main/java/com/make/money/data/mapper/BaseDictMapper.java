@@ -2,7 +2,9 @@ package com.make.money.data.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.make.money.data.entity.BaseDict;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BaseDictMapper extends BaseMapper<BaseDict> {
     int deleteByPrimaryKey(Long id);
 

@@ -2,7 +2,9 @@ package com.make.money.data.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.make.money.data.entity.MerchantFlowInfo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MerchantFlowInfoMapper extends BaseMapper<MerchantFlowInfo> {
     int deleteByPrimaryKey(Long id);
 

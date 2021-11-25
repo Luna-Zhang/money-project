@@ -2,7 +2,9 @@ package com.make.money.data.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.make.money.data.entity.RolePermissionInfo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RolePermissionInfoMapper extends BaseMapper<RolePermissionInfo> {
     int deleteByPrimaryKey(Long id);
 
