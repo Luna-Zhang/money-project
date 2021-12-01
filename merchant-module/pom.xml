@@ -15,19 +15,27 @@
     </parent>
 
     <properties>
-        <java.version>1.8</java.version>
+        <money-project.version>0.0.1-SNAPSHOT</money-project.version>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>com.make.money</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${money-project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.make.money</groupId>
             <artifactId>data</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${money-project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.make.money</groupId>
+            <artifactId>auth</artifactId>
+            <version>${money-project.version}</version>
         </dependency>
     </dependencies>
 

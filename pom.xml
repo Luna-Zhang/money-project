@@ -20,6 +20,7 @@
         <module>common-module</module>
         <module>data-module</module>
         <module>merchant-module</module>
+        <module>auth-module</module>
     </modules>
 
     <properties>

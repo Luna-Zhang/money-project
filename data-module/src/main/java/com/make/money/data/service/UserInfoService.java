@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.make.money.common.constants.SysParamConstant;
 import com.make.money.data.entity.UserInfo;
 import com.make.money.data.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -83,6 +86,19 @@ public class UserInfoService extends ServiceImpl<UserInfoMapper, UserInfo> {
         IPage<UserInfo> page = new Page<>(1, 10);
         QueryWrapper<UserInfo> param = new QueryWrapper<>();
         return entityMapper.selectPage(page, param);
+    }
+
+    /**
+     * 用户Id查询
+     * @param name 动态查询
+     * @param param 参数
+     * @return List<UserInfo>
+     */
+    public List<UserInfo> findByParam (String name, String param) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq(name, param);
+
+        return entityMapper.selectList(queryWrapper);
     }
 
 }
